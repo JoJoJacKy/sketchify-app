@@ -1,23 +1,62 @@
-import { FETCH_ALL, UPDATE, CREATE, DELETE } from "../constants/actionTypes";
+import {
+  FETCH_ALL,
+  FETCH_BY_SEARCH,
+  FETCH_POST,
+  START_LOADING,
+  END_LOADING,
+  UPDATE,
+  CREATE,
+  DELETE,
+} from '../constants/actionTypes';
 
-import * as api from "../api"; // This imports all the exports from the api, into an object called api; Can call the exported functions via dot notation
+import * as api from '../api'; // This imports all the exports from the api, into an object called api; Can call the exported functions via dot notation
 
 // Action Creators are functions that return an action
 // Actions are just objects that has a type and a payload
 // Use react thunk to allow for async
-export const getPosts = () => async (dispatch) => {
+export const getPosts = (page) => async (dispatch) => {
   // Redux Thunk in Use here (The Middleware)
   try {
-    const { data } = await api.fetchPosts(); // Fetches data from api
+    dispatch({ type: START_LOADING });
+    const { data } = await api.fetchPosts(page); // Fetches data from api
     dispatch({ type: FETCH_ALL, payload: data }); // Action being dispatched with type and payload as the data gotten
+    dispatch({ type: END_LOADING });
   } catch (error) {
     console.log(error);
   }
 };
 
-export const createPost = (post) => async (dispatch) => {
+export const getPost = (id) => async (dispatch) => {
+  // Redux Thunk in Use here (The Middleware)
   try {
+    dispatch({ type: START_LOADING });
+    const { data } = await api.fetchPost(id); // Fetches data from api
+    dispatch({ type: FETCH_POST, payload: data }); // Action being dispatched with type and payload as the data gotten
+    dispatch({ type: END_LOADING });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPostsBySearch = (searchQuery) => async (dispatch) => {
+  try {
+    dispatch({ type: START_LOADING });
+    const {
+      // Need to destructure data twice
+      data: { data },
+    } = await api.fetchPostsBySearch(searchQuery);
+    dispatch({ type: FETCH_BY_SEARCH, payload: data });
+    dispatch({ type: END_LOADING });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const createPost = (post, history) => async (dispatch) => {
+  try {
+    dispatch({ type: START_LOADING });
     const { data } = await api.createPost(post); // Whatever was posted into our database is returned
+    history.push(`/posts/${data._id}`);
     dispatch({ type: CREATE, payload: data }); // This posts the data into our current store data so front end can
   } catch (error) {
     console.log(error);

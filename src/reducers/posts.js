@@ -1,20 +1,44 @@
-import { FETCH_ALL, UPDATE, CREATE, DELETE } from "../constants/actionTypes";
+import {
+  FETCH_ALL,
+  FETCH_BY_SEARCH,
+  FETCH_POST,
+  UPDATE,
+  CREATE,
+  DELETE,
+  START_LOADING,
+  END_LOADING,
+} from '../constants/actionTypes';
 
-export default (posts = [], action) => {
+export default (state = { isLoading: true, posts: [] }, action) => {
   // Need to pass in initial state
   switch (action.type) {
+    case START_LOADING:
+      return { ...state, isLoading: true };
+    case END_LOADING:
+      return { ...state, isLoading: false };
     case FETCH_ALL:
-      return action.payload; // Returning data that is held by payload
+      return {
+        ...state,
+        posts: action.payload.data,
+        currentPage: action.payload.currentPage,
+        numberOfPages: action.payload.numberOfPages,
+      }; // Returning data that is held by payload
+    case FETCH_BY_SEARCH:
+      return { ...state, posts: action.payload }; // Returns to the "front end"
+    case FETCH_POST:
+      return { ...state, post: action.payload }; // Returns to the "front end"
     case DELETE:
-      return posts.filter((post) => post._id !== action.payload); // Keeps all the posts except the one that is equal to the sent ID
+      return { ...state, posts: state.posts.filter((post) => post._id !== action.payload) }; // Keeps all the posts except the one that is equal to the sent ID
     case UPDATE:
-      return posts.map(
-        (post) => (post._id === action.payload._id ? action.payload : post) // If the id of a post within our state data matches, we update it; If id doesnt, just gets skipped over
-      );
+      return {
+        ...state,
+        posts: state.posts.map((post) => (post._id === action.payload._id ? action.payload : post)),
+      }; // If the id of a post within our state data matches, we update it; If id doesnt, just gets skipped over
+
     case CREATE:
-      return [...posts, action.payload];
+      return { ...state, posts: [...state.posts, action.payload] };
     default:
-      return posts;
+      return state;
   }
 };
 
