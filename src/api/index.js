@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 // So we can call to any API endpoint (The last "/" MATTERS!!)
-const API = axios.create({ baseURL: 'http://localhost:5000/' });
-// const API = axios.create({ baseURL: 'https://memories-projex.herokuapp.com/' });
+// const API = axios.create({ baseURL: 'http://localhost:5000/' });
+const API = axios.create({ baseURL: 'https://memories-projex.herokuapp.com/' });
 
 // So middleware works
 API.interceptors.request.use((request) => {
