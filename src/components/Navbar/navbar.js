@@ -1,7 +1,6 @@
-import { AppBar, Container, Button, Avatar, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Box, Container, Button, Avatar, Toolbar, Typography } from '@material-ui/core';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import useStyles from './styles';
-import memories from '../../images/memories.png';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
@@ -37,15 +36,18 @@ const Navbar = () => {
     <div className={classes.centerer}>
       <AppBar className={classes.appBar} position="static" color="inherit">
         <Container className={classes.brandContainer}>
-          <Typography
-            component={Link}
-            to="/"
-            className={classes.heading}
-            variant="h2"
-            align="center"
-          >
-            Memories
-          </Typography>
+          <Box>
+            <Typography
+              component={Link}
+              to="/"
+              className={classes.heading}
+              variant="h2"
+              align="center"
+            >
+              Sketchify
+            </Typography>
+            <Typography>Sketching the world together!✏️</Typography>
+          </Box>
           <Toolbar className={classes.toolbar}>
             {user ? (
               <div className={classes.profile}>
@@ -69,13 +71,7 @@ const Navbar = () => {
                 </Button>
               </div>
             ) : (
-              <Button
-                
-                component={Link}
-                to="/auth"
-                variant="contained"
-                color="primary"
-              >
+              <Button component={Link} to="/auth" variant="contained" color="primary">
                 Login
               </Button>
             )}

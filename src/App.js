@@ -4,7 +4,7 @@ import Home from './components/Home/Home';
 import Auth from './components/Auth/Auth';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import PostDetails from './components/PostDetails/PostDetails';
-import { useEffect } from 'react';
+
 
 function App() {
   const user = JSON.parse(localStorage.getItem('profile'));
@@ -21,7 +21,9 @@ function App() {
           <Route
             path="/auth"
             exact
-            component={() => (!user ? <Auth /> : <Redirect to="/posts" />)}
+            // component={() => (!user ? <Auth /> : <Redirect to="/posts" />)}
+            // Have issue with reloading the page, then unable to access the login page
+            component={Auth}
           />
         </Switch>
       </Container>

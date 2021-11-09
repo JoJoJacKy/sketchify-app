@@ -13,7 +13,7 @@ function Posts({ setCurrentId }) {
   if (!posts.length && !isLoading) return 'No posts';
 
   return isLoading ? (
-    <CircularProgress variant="indeterminate" thickness={21} />
+    <CircularProgress color="secondary" variant="indeterminate" thickness={21} />
   ) : (
     <Grid className={classes.container} container alignItems="stretch" spacing={3}>
       {posts.map((post) => (

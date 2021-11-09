@@ -34,6 +34,10 @@ const Auth = () => {
       dispatch(signin(formData, history));
     }
   };
+  const handleDemo = () => {
+    const demo = { email: 'demoaccount@example.com', password: '123123' };
+    dispatch(signin(demo, history));
+  };
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -129,19 +133,20 @@ const Auth = () => {
               onFailure={googleFailure}
               cookiePolicy="single_host_origin"
             />
-
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Button
-                  onClick={switchMode}
-                  className={classes.submit}
-                  variant="contained"
-                  color="secondary"
-                >
-                  {isSignup ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
-                </Button>
-              </Grid>
-            </Grid>
+            <Button
+              onClick={switchMode}
+              className={classes.submit}
+              variant="contained"
+              color="secondary"
+              fullWidth
+            >
+              {isSignup
+                ? 'Already have an account? Sign In Here!'
+                : "Don't have an account? Sign Up Here!"}
+            </Button>
+            <Button onClick={handleDemo} variant="outlined" color="primary" fullWidth>
+              DEMO ACCOUNT
+            </Button>
           </form>
         </Paper>
       </Container>

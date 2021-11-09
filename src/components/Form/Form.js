@@ -58,7 +58,7 @@ function Form({ currentId, setCurrentId }) {
     return (
       <Paper className={classes.paper}>
         <Typography variant="h6" align="center">
-          Please Sign In to create your own memories and like other's memories!
+          Please sign-in to post your sketches and like other sketches!
         </Typography>
       </Paper>
     );
@@ -72,7 +72,7 @@ function Form({ currentId, setCurrentId }) {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">{currentId ? 'Editing' : 'Creating'} a memory</Typography>
+        <Typography variant="h6">{currentId ? 'Editing' : 'Posting'} A Sketch</Typography>
 
         <TextField
           name="title"

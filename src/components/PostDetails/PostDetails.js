@@ -37,30 +37,28 @@ const PostDetails = () => {
     );
   }
 
-  // Removing current posts from the recommended
-  const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
+  // Removing current posts from the recommended and limiting to the first 4
+
+  const recommendedPosts = posts.slice(0, 3).filter(({ _id }) => _id !== post._id);
 
   const openPost = (_id) => history.push(`/posts/${_id}`);
 
   return (
     <Grow in>
-      <Paper style={{ padding: '20px' }} elevation={6}>
+      <Paper style={{ padding: '20px', backgroundColor: '#f3edff' }} elevation={6}>
         <div className={classes.card}>
           <div className={classes.section}>
-            <Typography variant="h3" component="h2">
-              {post.title}
-            </Typography>
+            <Typography variant="h3">{post.title}</Typography>
             <Typography gutterBottom variant="h6" color="textSecondary" component="h2">
               {post.tags.map((tag) => `#${tag} `)}
             </Typography>
+            <Typography variant="h6">Created by: {post.name}</Typography>
+            <Typography fontSize={14} color="textSecondary" variant="body1">
+              {moment(post.createdAt).fromNow()}
+            </Typography>
+            <br />
             <Typography gutterBottom variant="body1" component="p">
               {post.message}
-            </Typography>
-            <Typography variant="h6">Created by: {post.name}</Typography>
-            <Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
-            <Divider style={{ margin: '20px 0' }} />
-            <Typography variant="body1">
-              <strong>Realtime Chat - coming soon!</strong>
             </Typography>
             <Divider style={{ margin: '20px 0' }} />
             <CommentSection post={post} />

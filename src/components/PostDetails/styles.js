@@ -5,18 +5,25 @@ export default makeStyles((theme) => ({
     objectFit: 'cover',
     width: '100%',
     height: '100%',
-    maxHeight: '600px',
-    maxWidth: '600px',
-    // [theme.breakpoints.down('sm')]: {
-    //   justifySelf: 'center',
-    // },
+    maxHeight: '540px',
+    maxWidth: '960px',
+    borderRadius: '20px',
+    [theme.breakpoints.down('lg')]: {
+      maxHeight: '480px',
+      maxWidth: '848px',
+    },
+    [theme.breakpoints.down('md')]: {
+      maxHeight: '360px',
+      maxWidth: '640px',
+    },
   },
   card: {
     display: 'flex',
     width: '100%',
     [theme.breakpoints.down('sm')]: {
       flexWrap: 'wrap',
-      flexDirection: 'column',
+      flexDirection: 'column-reverse',
+      justifyContent: 'center',
     },
   },
   section: {
@@ -27,7 +34,8 @@ export default makeStyles((theme) => ({
   imageSection: {
     marginLeft: '20px',
     [theme.breakpoints.down('sm')]: {
-      marginLeft: 0,
+      marginLeft: 'auto',
+      marginRight: 'auto',
     },
   },
   recommendedPosts: {
