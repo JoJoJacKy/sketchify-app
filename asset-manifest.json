@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/sketchify-app/static/css/main.b5fdef17.chunk.css",
+    "main.js": "/sketchify-app/static/js/main.6e2bca70.chunk.js",
+    "main.js.map": "/sketchify-app/static/js/main.6e2bca70.chunk.js.map",
+    "runtime-main.js": "/sketchify-app/static/js/runtime-main.b57c14d4.js",
+    "runtime-main.js.map": "/sketchify-app/static/js/runtime-main.b57c14d4.js.map",
+    "static/js/2.c78ffe64.chunk.js": "/sketchify-app/static/js/2.c78ffe64.chunk.js",
+    "static/js/2.c78ffe64.chunk.js.map": "/sketchify-app/static/js/2.c78ffe64.chunk.js.map",
+    "index.html": "/sketchify-app/index.html",
+    "static/css/main.b5fdef17.chunk.css.map": "/sketchify-app/static/css/main.b5fdef17.chunk.css.map",
+    "static/js/2.c78ffe64.chunk.js.LICENSE.txt": "/sketchify-app/static/js/2.c78ffe64.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/sketchify-app/static/media/bg.82f75e1d.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b57c14d4.js",
+    "static/js/2.c78ffe64.chunk.js",
+    "static/css/main.b5fdef17.chunk.css",
+    "static/js/main.6e2bca70.chunk.js"
+  ]
+}
